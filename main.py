@@ -6,6 +6,7 @@ import requests
 import json
 import re
 from dotenv import load_dotenv
+import os
 load_dotenv()
 
 app = FastAPI()
