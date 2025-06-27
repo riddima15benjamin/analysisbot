@@ -5,6 +5,8 @@ import fitz  # PyMuPDF
 import requests
 import json
 import re
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
@@ -16,8 +18,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Groq API Key (consider using environment variables for security)
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise RuntimeError("Missing GROQ_API_KEY environment variable")
 
 class ResumeText(BaseModel):
     text: str
